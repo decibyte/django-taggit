@@ -269,7 +269,6 @@ class _TaggableManager(models.Manager):
         for tag in obj_tags:
             self.through.objects.get_or_create(tag=tag, **self._lookup_kwargs())
 
-
     @require_instance_manager
     def set(self, *tags):
         have = set(tag.name for tag in self.get_query_set().all())
@@ -346,6 +345,12 @@ class _TaggableManager(models.Manager):
             obj.similar_tags = result["n"]
             results.append(obj)
         return results
+
+    def namespaced(self):
+        return self.get_query_set().exclude(namespace='')
+
+    def non_namespaced(self):
+        return self.get_query_set().filter(namespace='')
 
 
 def _get_subclasses(model):

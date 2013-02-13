@@ -56,14 +56,6 @@ class Tag(TagBase):
     level = models.IntegerField(verbose_name=_('Level'), default=0)
     namespace = models.CharField(_('namespace'), max_length=250, blank=True, null=True)
 
-    def __unicode__(self):
-        name = self.name.partition(":")[2] if self.name.partition(":")[1] == ":" else self.name
-        return name
-
-    def save(self, *args, **kwargs):
-        self.namespace = self.name.partition(":")[0] if self.name.partition(":")[1] == ":" else u''
-        return super(Tag, self).save(*args, **kwargs)
-
     class Meta:
         verbose_name = _("Tag")
         verbose_name_plural = _("Tags")

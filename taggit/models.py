@@ -59,7 +59,7 @@ class Tag(TagBase):
     class Meta:
         verbose_name = _("Tag")
         verbose_name_plural = _("Tags")
-        ordering = ['namespace', 'name']
+        ordering = ['namespace', 'level', 'name']
         unique_together = ('name', 'namespace',)
 
     def get_absolute_url(self):

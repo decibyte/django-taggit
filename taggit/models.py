@@ -54,7 +54,7 @@ class TagBase(models.Model):
 
 class Tag(TagBase):
     level = models.IntegerField(verbose_name=_('Level'), default=0)
-    namespace = models.CharField(_('namespace'), max_length=250, blank=True, null=True)
+    namespace = models.CharField(_('namespace'), max_length=250, blank=True, default='')
 
     class Meta:
         verbose_name = _("Tag")

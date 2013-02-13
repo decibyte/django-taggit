@@ -16,7 +16,7 @@ class TaggedItemInline(admin.StackedInline):
 
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', tagged_items_count)
+    list_display = ('name', 'slug', 'level', tagged_items_count)
     list_filter = ('namespace',)
     ordering = ('name',)
     search_fields = ('name', 'slug')

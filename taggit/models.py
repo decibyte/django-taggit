@@ -8,8 +8,8 @@ from django.core.urlresolvers import reverse
 
 
 class TagBase(models.Model):
-    name = models.CharField(verbose_name=_('Name'), unique=True, max_length=100)
-    slug = models.SlugField(verbose_name=_('Slug'), unique=True, max_length=100)
+    name = models.CharField(verbose_name=_('Name'), unique=True, max_length=250)
+    slug = models.SlugField(verbose_name=_('Slug'), unique=True, max_length=250)
 
     def __unicode__(self):
         return self.name
@@ -52,9 +52,9 @@ class TagBase(models.Model):
         return slug
 
 
-
 class Tag(TagBase):
-    namespace =  models.CharField(_('namespace'), max_length=100, blank=True, null=True)
+    level = models.IntegerField(verbose_name=_('Level'), default=0)
+    namespace = models.CharField(_('namespace'), max_length=250, blank=True, null=True)
 
     def __unicode__(self):
         name = self.name.partition(":")[2] if self.name.partition(":")[1] == ":" else self.name
@@ -70,8 +70,7 @@ class Tag(TagBase):
         ordering = ['namespace', 'name']
 
     def get_absolute_url(self):
-        return reverse('taggit_tag', kwargs={'tag_slug':self.slug})
-
+        return reverse('taggit_tag', kwargs={'tag_slug': self.slug})
 
 
 class ItemBase(models.Model):

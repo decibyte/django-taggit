@@ -65,6 +65,11 @@ class Tag(TagBase):
     def get_absolute_url(self):
         return reverse('taggit_tag', kwargs={'tag_slug': self.slug})
 
+    def get_namespaced_repr(self):
+        if self.namespace:
+            return '{0}:{1}'.format(self.namespace, self.name)
+        return self.name
+
 
 class ItemBase(models.Model):
     def __unicode__(self):

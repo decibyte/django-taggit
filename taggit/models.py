@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 
 
 class TagBase(models.Model):
-    name = models.CharField(verbose_name=_('Name'), unique=True, max_length=250)
+    name = models.CharField(verbose_name=_('Name'), max_length=250)
     slug = models.SlugField(verbose_name=_('Slug'), unique=True, max_length=250)
 
     def __unicode__(self):

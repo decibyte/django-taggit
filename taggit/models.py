@@ -67,7 +67,7 @@ class Tag(TagBase):
 
     def get_namespaced_repr(self):
         if self.namespace:
-            return ':'.join(self.namespace, self.name).encode('utf-8')
+            return u'{0}.{1}'.format(self.namespace, self.name)
         return self.name
 
 
